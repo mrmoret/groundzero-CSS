@@ -617,7 +617,7 @@ form button:hover,
 .text-end{ text-align: end; }
 
 .fw-bold{ font-weight: bold; }
-.fs-italic{ font-style: italic; }
+.fs-italic{ font-style: italic; } 
 
 /* Margins */
 .m-0{ margin: var(--spacer-0); }
