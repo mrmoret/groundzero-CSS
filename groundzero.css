@@ -705,10 +705,6 @@ form button:hover,
 .px-3{ padding-inline-start: var(--spacer-3); padding-inline-end: var(--spacer-3); }
 .px-4{ padding-inline-start: var(--spacer-4); padding-inline-end: var(--spacer-4); }
 
-
-
-
-
 /*
 .col-2{ flex: 0 0 auto; width: 16.66666667%; }
 .col-3{ flex: 0 0 auto; width: 25%; }
