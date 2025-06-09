@@ -1,6 +1,10 @@
-/* 
-Yo!
-CSS GroundZero */
+/*----------------------------
+
+Name: GroundZero
+Author: MrMoret
+Website: https://mrmoret.com
+
+-----------------------------*/
 
 :root{
     --primary: #0d6efd;
@@ -23,6 +27,7 @@ CSS GroundZero */
     --a-color: #161616;
     --a-hover-color: #787878;
     --dropdown-a-hover-bg: #d9d9d9;
+    --form-input-bg: #fff;
     --table-border-color: rgba(232, 235, 238, 0);
     --table-odd-bg: rgba(0, 0, 0, 0.05);
     --table-hover-bg: rgba(0, 0, 0, 0.075);
@@ -51,6 +56,7 @@ CSS GroundZero */
     --a-color: #adb5bd;
     --a-hover-color: #ffffff;
     --dropdown-a-hover-bg: #2c2c2c;
+    --form-input-bg: #161616;
     --table-border-color: rgba(232, 235, 238, 0.4);
     --table-odd-bg: rgba(0, 0, 0, 0.2);
     --table-hover-bg: rgba(0, 0, 0, 0.3);
@@ -84,7 +90,7 @@ body{
 --------- */
 footer, header{
     background-color: var(--header-bg);
-    padding: var(--spacer-3);
+    padding: var(--spacer-2);
 }
 header{ border-radius: 0 0 var(--header-border-radius); margin-bottom: 30px; }
 footer{ border-radius: var(--header-border-radius) 0 0; margin-top: 30px; }
@@ -188,8 +194,8 @@ small,.small{
 .container,
 .container-fluid{
     width: 100%;
-    padding-right: var(--spacer-2);
-    padding-left: var(--spacer-2);
+    padding-right: var(--spacer, 0.75rem);
+    padding-left: var(--spacer, 0.75rem);
     margin-right: auto;
     margin-left: auto;
 }
@@ -225,7 +231,7 @@ small,.small{
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 15px;
+  gap: 20px;
 }
 
 .col{
@@ -364,6 +370,7 @@ form label{
   margin-bottom: 0.5rem;
   font-weight: 600;
   font-style: italic;
+  color: var(--body-color);
 }
 
 form input[type="text"],
@@ -374,20 +381,26 @@ form input[type="date"],
 form textarea,
 form select{
   appearance: none;
-  --webkit-appereance: none;
-  --moz-appereance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   display: block;
   width: 100%;
   height: 40px;
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
-  color: #495057;
-  background-color: #fff;
+  color: var(--body-color);
+  background-color: var(--form-input-bg);
   background-clip: padding-box;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   margin-bottom: 1rem;
+}
+
+form textarea{
+  height: auto;
+  min-height: 80px;
+  resize: vertical;
 }
 
 form select{
@@ -400,20 +413,9 @@ form select{
 form input:focus,
 form textarea:focus,
 form select:focus{
-  border-color: #80bdff;
+  border-color: var(--primary);
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
-}
-
-.form-check{
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.form-check input[type="checkbox"],
-.form-check input[type="radio"]{
-  margin-right: 0.5rem;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
 }
 
 form button,
@@ -428,35 +430,116 @@ form button,
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.15s ease-in-out;
+  text-decoration: none;
 }
 
 form button:hover,
 .btn:hover{
-  background-color: var(--primary-hover)!important;
-  border-color: var(--primary-hover)!important;
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
 }
 
-.form-input{
-  display: block;
-  width: 100%;
-  padding: 0.375rem 0.75rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  color: #495057;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid #ced4da;
-  border-radius: 0.25rem;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+/* Checkbox && Radio */
+.form-check{
+  display: flex;
+  align-items: center;
   margin-bottom: 1rem;
 }
 
-.form-input:focus{
-  color: #495057;
-  background-color: #fff;
-  border-color: #80bdff;
+.form-check input[type="checkbox"],
+.form-check input[type="radio"]{
+  width: 0.8rem;
+  height: 0.8rem;
+  margin: 0;
+  margin-inline-end: 0.5rem;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: var(--body-bg);
+  border: 1px solid #adb5bd;
+  border-radius: 0.25em;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  flex-shrink: 0;
+}
+
+.form-check input[type="radio"]{
+  border-radius: 50%;
+}
+
+.form-check input[type="checkbox"]:checked,
+.form-check input[type="radio"]:checked{
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.form-check input[type="checkbox"]:checked{
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.form-check input[type="radio"]:checked{
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.form-check input:focus{
+  border-color: var(--primary);
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+  box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.4);
+}
+
+.form-check input:focus-visible{
+  transform: scale(1.05);
+}
+
+.form-check input:active{
+  transform: scale(0.95);
+  border-color: var(--primary-hover);
+}
+
+.form-check input:hover:not(:disabled):not(:checked){
+  border-color: #6c757d;
+}
+
+.form-check input:disabled{
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--light);
+  border-color: #dee2e6;
+}
+
+.form-check input:disabled ~ label{
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.form-check label{
+  color: var(--body-color);
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: normal;
+  font-style: normal;
+}
+
+[data-theme="dark"] .form-check.dark input[type="checkbox"],
+[data-theme="dark"] .form-check.dark input[type="radio"]{
+  background-color: #2c2c2c;
+  border-color: #495057;
+}
+
+[data-theme="dark"] .form-check.dark input:hover:not(:disabled):not(:checked){
+  border-color: #6c757d;
+}
+
+[data-theme="dark"] .form-check.dark input:disabled{
+  background-color: #343a40;
+  border-color: #495057;
 }
 
 /* MODALS
@@ -591,35 +674,26 @@ form button:hover,
 -------- */
 .pointer{ cursor: pointer; }
 
+
 .d-inline-flex{ display: inline-flex; }
 .d-none{ display: none; }
 
 .flx-1{ flex: 1; }
 .jc-end{ justify-content: end; }
 
-/* Colors && BGs */
-.text-success{ color: var(--success); }
-.text-warning{ color: var(--warning); }
-.text-danger{ color: var(--danger); }
-
 .bg-success{ background-color: var(--success); }
 .bg-warning{ background-color: var(--warning); }
 .bg-danger{ background-color: var(--danger); }
 .bg-secondary{ background-color: var(--secondary); }
 
-.hov-danger:hover{ color: var(--danger); }
-.hov-warning:hover{ color: var(--warning); }
-.hov-success:hover{ color: var(--success); }
+.text-success{ color: var(--success); }
+.text-warning{ color: var(--warning); }
+.text-danger{ color: var(--danger); }
 
-/* Tipography */
 .text-start{ text-align: start; }
 .text-center{ text-align: center; }
 .text-end{ text-align: end; }
 
-.fw-bold{ font-weight: bold; }
-.fs-italic{ font-style: italic; } 
-
-/* Margins */
 .m-0{ margin: var(--spacer-0); }
 .m-1{ margin: var(--spacer-1); }
 .m-2{ margin: var(--spacer-2); }
@@ -662,58 +736,9 @@ form button:hover,
 .mx-3{ margin-inline-start: var(--spacer-3); margin-inline-end: var(--spacer-3); }
 .mx-4{ margin-inline-start: var(--spacer-4); margin-inline-end: var(--spacer-4); }
 
-/* Paddings */
-.p-0{ padding: var(--spacer-0); }
-.p-1{ padding: var(--spacer-1); }
-.p-2{ padding: var(--spacer-2); }
-.p-3{ padding: var(--spacer-3); }
-.p-4{ padding: var(--spacer-4); }
+.hov-danger:hover{ color: var(--danger); }
+.hov-warning:hover{ color: var(--warning); }
+.hov-success:hover{ color: var(--success); }
 
-.py-0{ padding-top: var(--spacer-0); padding-bottom: var(--spacer-0); }
-.py-1{ padding-top: var(--spacer-1); padding-bottom: var(--spacer-1); }
-.py-2{ padding-top: var(--spacer-2); padding-bottom: var(--spacer-2); }
-.py-3{ padding-top: var(--spacer-3); padding-bottom: var(--spacer-3); }
-.py-4{ padding-top: var(--spacer-4); padding-bottom: var(--spacer-4); }
-
-.ps-0{ padding-inline-start: var(--spacer-0); }
-.ps-1{ padding-inline-start: var(--spacer-1); }
-.ps-2{ padding-inline-start: var(--spacer-2); }
-.ps-3{ padding-inline-start: var(--spacer-3); }
-.ps-4{ padding-inline-start: var(--spacer-4); }
-
-.pt-0{ padding-top: var(--spacer-0); }
-.pt-1{ padding-top: var(--spacer-1); }
-.pt-2{ padding-top: var(--spacer-2); }
-.pt-3{ padding-top: var(--spacer-3); }
-.pt-4{ padding-top: var(--spacer-4); }
-
-.pe-0{ padding-inline-end: var(--spacer-0); }
-.pe-1{ padding-inline-end: var(--spacer-1); }
-.pe-2{ padding-inline-end: var(--spacer-2); }
-.pe-3{ padding-inline-end: var(--spacer-3); }
-.pe-4{ padding-inline-end: var(--spacer-4); }
-
-.pb-0{ padding-bottom: var(--spacer-0); }
-.pb-1{ padding-bottom: var(--spacer-1); }
-.pb-2{ padding-bottom: var(--spacer-2); }
-.pb-3{ padding-bottom: var(--spacer-3); }
-.pb-4{ padding-bottom: var(--spacer-4); }
-
-.px-0{ padding-inline-start: var(--spacer-0); padding-inline-end: var(--spacer-0); }
-.px-1{ padding-inline-start: var(--spacer-1); padding-inline-end: var(--spacer-1); }
-.px-2{ padding-inline-start: var(--spacer-2); padding-inline-end: var(--spacer-2); }
-.px-3{ padding-inline-start: var(--spacer-3); padding-inline-end: var(--spacer-3); }
-.px-4{ padding-inline-start: var(--spacer-4); padding-inline-end: var(--spacer-4); }
-
-/*
-.col-2{ flex: 0 0 auto; width: 16.66666667%; }
-.col-3{ flex: 0 0 auto; width: 25%; }
-.col-4{ flex: 0 0 auto; width: 33.33333333%; }
-.col-5{ flex: 0 0 auto; width: 41.66666667%; }
-.col-6{ flex: 0 0 auto; width: 50%; }
-.col-7{ flex: 0 0 auto; width: 58.33333333%; }
-.col-8{ flex: 0 0 auto; width: 66.66666667%; }
-.col-9{ flex: 0 0 auto; width: 75%; }
-.col-10{ flex: 0 0 auto; width: 83.33333333%; }
-.col-11{ flex: 0 0 auto; width: 91.66666667%; }
-*/
+.fw-bold{ font-weight: bold; }
+.fs-italic{ font-style: italic; }
